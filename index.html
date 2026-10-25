@@ -87,6 +87,7 @@ h2{font-size:21px}
 .prose label.fq{display:block;margin:.8em 0 .3em}
 .prose .fl{text-indent:0;margin:0 0 .5em}
 .prose .cbs label{margin-right:.6em;white-space:nowrap}
+.seg2{display:flex;gap:6px;margin:0 0 14px;padding:4px;border-radius:14px;background:var(--line)}.seg2 button{flex:1;border:0;background:transparent;border-radius:11px;padding:10px 6px;font-weight:700;font-size:15px;color:var(--muted)}.seg2 button.on{background:var(--card);color:var(--accent);box-shadow:var(--shadow)}
 .grp{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
 .li .sub{display:block;font-weight:400;font-size:13px;color:var(--muted)}
 .rtitle{margin:2px 0 4px}
@@ -639,7 +640,7 @@ var BOOKS=[
  {id:"kissalar",off:5,col:"#b0562f",ic:"📖",t:["Zamanı Aşan Sesler","Zeitlose Stimmen"],s:["Kur’ân’dan Kıssalar, Bugüne Mesajlar","Geschichten aus dem Koran – Botschaften für unsere Zeit"],k:["Kıssalar","Koran-Erzählungen"]}
 ];
 var S={
- tr:{app:"Hikmet Defteri",tHome:"Bugün",tBooks:"Kitaplar",tStats:"İlerleme",tRead:"Oku",readAll:"Kitapların tamamını oku",readAllSub:"Kitabı seç, bölüm bölüm oku.",chap:"bölüm",chW:"Bölüm",appx:"Ekler ve kaynakça",hello:"Hoş geldin",helloSub:"Her gün üç kitaptan kısa bir ders ve küçük bir sınav.",
+ tr:{app:"Hikmet Defteri",tHome:"Bugün",tBooks:"Kitaplar",tStats:"İlerleme",tRead:"Oku",readAll:"Kitapların tamamını oku",readAllSub:"Kitabı seç, bölüm bölüm oku.",chap:"bölüm",chW:"Bölüm",bookCh:"Kitabın bölümleri",appx:"Ekler ve kaynakça",hello:"Hoş geldin",helloSub:"Her gün üç kitaptan kısa bir ders ve küçük bir sınav.",
   today:"Bugünün dersi",open:"Dersi aç",readBook:"Kitabı oku",lessons:"Günlük dersler",quizStart:"Quiz’e başla",question:"Soru",next:"Sonraki",finish:"Bitir",
   score:"Sonuç",again:"Tekrar dene",toBook:"Ders listesi",nextLesson:"Sonraki ders",prevLesson:"Önceki ders",doneBadge:"Okundu",best:"En iyi",streak:"Üst üste gün",days:"gün",
   chapters:"Bölümler",resume:"Kaldığın yerden devam et",importT:"Kitabın tam metnini yükle",importH:"Kitabın bu dildeki metnini .md veya .txt olarak seç ya da yapıştır. Her bölüm “## Bölüm başlığı” satırıyla başlamalı. Metin yalnızca bu cihazda saklanır.",
@@ -648,7 +649,7 @@ var S={
   lessonsRead:"Okunan ders",quizzes:"Çözülen quiz",avg:"Ortalama",reset:"İlerlemeyi sıfırla",sure:"Tüm ilerleme silinsin mi?",
   great:"Harika! Konuyu çok iyi kavradın.",good:"Güzel gidiyor. Bir kez daha okuyup tekrar deneyebilirsin.",try:"Başlangıç için iyi. Dersi tekrar oku ve yeniden dene.",
   correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan",cont:"Devam"},
- de:{app:"Weisheitsheft",tHome:"Heute",tBooks:"Bücher",tStats:"Fortschritt",tRead:"Lesen",readAll:"Alle Bücher lesen",readAllSub:"Wähle ein Buch und lies es Kapitel für Kapitel.",chap:"Kapitel",chW:"Kapitel",appx:"Anhang und Verzeichnisse",hello:"Willkommen",helloSub:"Jeden Tag eine kurze Lektion aus drei Büchern und ein kleines Quiz.",
+ de:{app:"Weisheitsheft",tHome:"Heute",tBooks:"Bücher",tStats:"Fortschritt",tRead:"Lesen",readAll:"Alle Bücher lesen",readAllSub:"Wähle ein Buch und lies es Kapitel für Kapitel.",chap:"Kapitel",chW:"Kapitel",bookCh:"Kapitel des Buches",appx:"Anhang und Verzeichnisse",hello:"Willkommen",helloSub:"Jeden Tag eine kurze Lektion aus drei Büchern und ein kleines Quiz.",
   today:"Lektion des Tages",open:"Lektion öffnen",readBook:"Buch lesen",lessons:"Tägliche Lektionen",quizStart:"Quiz starten",question:"Frage",next:"Weiter",finish:"Beenden",
   score:"Ergebnis",again:"Nochmal versuchen",toBook:"Zur Lektionsliste",nextLesson:"Nächste Lektion",prevLesson:"Vorherige Lektion",doneBadge:"Gelesen",best:"Beste",streak:"Tage in Folge",days:"Tage",
   chapters:"Kapitel",resume:"Dort weiterlesen, wo du aufgehört hast",importT:"Vollständigen Buchtext laden",importH:"Wähle den Text des Buches in dieser Sprache als .md oder .txt oder füge ihn ein. Jedes Kapitel muss mit einer Zeile „## Kapitelüberschrift“ beginnen. Der Text wird nur auf diesem Gerät gespeichert.",
@@ -770,17 +771,29 @@ function vBooks(){
   h+='<p class="note" style="text-align:center">'+esc(T("author"))+'</p>';
   view.innerHTML=h;
 }
+var bookTab=ls("hd_bt")==="ls"?"ls":"ch";
+function chapRows(id,list){
+  var o="",gb=false;
+  list.forEach(function(x,i){
+    if(x.k==="back"&&!gb){gb=true;o+='<div class="grp">'+esc(T("appx"))+'</div>';}
+    var no=x.k?(x.k==="ch"?x.n:(x.k==="pre"?"✦":"＋")):(i+1);
+    o+='<button class="li" data-go="#/read/'+id+'/'+i+'"><span class="no">'+no+'</span><span class="t">'+esc(x.title)+(x.s?'<span class="sub">'+esc(x.s)+'</span>':'')+'</span></button>';
+  });
+  return o;
+}
 function vBook(id){
   var b=B(id);if(!b){location.hash="#/books";return;}
   colorize(b);setHead(b.t[li()],"#/books");setTabs("books");
   var h='<div class="hero"><div class="ic">'+b.ic+'</div><h2>'+esc(b.t[li()])+'</h2><p>'+esc(b.s[li()])+'</p></div>';
   h+='<div class="stack" style="margin-bottom:16px"><button class="btn full" data-go="#/read/'+id+'">📖 '+esc(T("readBook"))+'</button><button class="btn ghost full" data-go="#/lesson/'+id+'/'+todayIdx(b)+'">'+esc(T("today"))+': '+esc(LS(id)[todayIdx(b)].t[li()])+'</button></div>';
-  h+='<h2>'+esc(T("lessons"))+'</h2>';
-  LS(id).forEach(function(l,i){
+  h+='<div class="seg2"><button data-bt="ch" class="'+(bookTab==="ch"?"on":"")+'">'+esc(T("bookCh"))+'</button><button data-bt="ls" class="'+(bookTab==="ls"?"on":"")+'">'+esc(T("lessons"))+'</button></div>';
+  if(bookTab==="ch"){h+=chapRows(id,chaptersFor(id).list);}
+  else LS(id).forEach(function(l,i){
     var s=status(id,i);
     h+='<button class="li '+(s&&(s.read||s.best!=null)?"done":"")+'" data-go="#/lesson/'+id+'/'+i+'"><span class="no">'+(i+1)+'</span><span class="t">'+esc(l.t[li()])+'</span>'+(s&&s.best!=null?'<span class="badge ok">'+s.best+'/'+s.tot+'</span>':'')+'</button>';
   });
   view.innerHTML=h;
+  view.querySelectorAll("[data-bt]").forEach(function(x){x.onclick=function(){bookTab=x.getAttribute("data-bt");ls("hd_bt",bookTab);vBook(id);};});
 }
 function vLesson(id,n){
   var b=B(id),all=LS(id),l=all[n];if(!b||!l){location.hash="#/books";return;}
@@ -859,12 +872,7 @@ function vRead(id,ch){
   var h2='<h2>'+esc(T("chapters"))+'</h2>';
   var last=prog.r[id+":"+lang];
   if(last!==undefined&&last<list.length)h2+='<button class="btn full" style="margin-bottom:12px" data-go="#/read/'+id+'/'+last+'">▶ '+esc(T("resume"))+' ('+(last+1)+')</button>';
-  var gb=false;
-  list.forEach(function(x,i){
-    if(x.k==="back"&&!gb){gb=true;h2+='<div class="grp">'+esc(T("appx"))+'</div>';}
-    var no=x.k?(x.k==="ch"?x.n:(x.k==="pre"?"✦":"＋")):(i+1);
-    h2+='<button class="li" data-go="#/read/'+id+'/'+i+'"><span class="no">'+no+'</span><span class="t">'+esc(x.title)+(x.s?'<span class="sub">'+esc(x.s)+'</span>':'')+'</span></button>';
-  });
+  h2+=chapRows(id,list);
   view.innerHTML=h2;
 }
 function vStats(){
