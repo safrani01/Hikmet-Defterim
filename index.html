@@ -956,7 +956,8 @@ var kdCache={},kdCur=null;
 function kdInfo(id){var m=window.KD&&KD.books&&KD.books[id];if(!m)return null;if(!m._off){var o=[],a=0;m.len.forEach(function(l){o.push(a);a+=l;});m._off=o;}return m;}
 function kdChunkP(id,c){
   var k=id+":"+c;if(kdCache[k])return kdCache[k];
-  var pr=fetch("kd/"+id+"-"+c+".bin").then(function(r){if(!r.ok)throw new Error("http "+r.status);return r.arrayBuffer();});
+  if(window.KDEMB&&KDEMB[k]){var bs=atob(KDEMB[k]),u=new Uint8Array(bs.length);for(var q=0;q<bs.length;q++)u[q]=bs.charCodeAt(q);return kdCache[k]=Promise.resolve(u.buffer);}
+  var fn=id+"-"+c+".bin";var pr=fetch("kd/"+fn).then(function(r){if(!r.ok)throw 0;return r;}).catch(function(){return fetch(fn);}).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status+" · "+fn);return r.arrayBuffer();});
   kdCache[k]=pr;pr.catch(function(){delete kdCache[k];});
   var ks=Object.keys(kdCache);if(ks.length>6){delete kdCache[ks[0]];}
   return pr;
@@ -999,7 +1000,7 @@ function vKDBook(id){
     ob.disabled=true;var nch=Math.ceil(m.n/m.per),i=0;om.textContent=T("kdOffRun")+" 0/"+nch;
     (function nx(){
       if(i>=nch){om.textContent=T("kdOffDone");ob.disabled=false;return;}
-      fetch("kd/"+id+"-"+i+".bin").then(function(r){return r.arrayBuffer();}).then(function(){i++;om.textContent=T("kdOffRun")+" "+i+"/"+nch;nx();}).catch(function(){om.textContent=T("kdErr");ob.disabled=false;});
+      kdChunkP(id,i).then(function(){i++;om.textContent=T("kdOffRun")+" "+i+"/"+nch;nx();}).catch(function(){om.textContent=T("kdErr");ob.disabled=false;});
     })();
   };
 }
@@ -1021,7 +1022,7 @@ function vKDRead(id,p){
     if(kdCur)URL.revokeObjectURL(kdCur);kdCur=u;
     w.innerHTML='<img class="kdp" alt="" src="'+u+'">';sz();
     if(p<m.n)kdPageUrl(id,p+1).then(function(x){URL.revokeObjectURL(x);},function(){});
-  }).catch(function(){w.innerHTML='<div class="kdl">'+esc(T("kdErr"))+'</div>';});
+  }).catch(function(e){w.innerHTML='<div class="kdl">'+esc(T("kdErr"))+'<br><br><small>'+esc(String(e&&e.message||e))+'</small></div>';});
   view.querySelectorAll("[data-z]").forEach(function(x){x.onclick=function(){zm=Math.max(1,Math.min(3,zm+parseInt(x.getAttribute("data-z"),10)));ls("hd_kz",String(zm));sz();};});
   function go(){var v=parseInt(document.getElementById("kdn").value,10);if(v>=1&&v<=m.n)location.hash="#/kd/"+id+"/"+v;}
   document.getElementById("kdg").onclick=go;
