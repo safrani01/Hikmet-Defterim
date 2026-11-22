@@ -705,7 +705,7 @@ var S={
   builtin:"Şu an her dersin okuma metni gösteriliyor. Kitabın tam metnini aşağıdan ekleyebilirsin.",full:"Kitabın tam metni",prev:"Önceki",nextCh:"Sonraki",
   lessonsRead:"Okunan ders",quizzes:"Çözülen quiz",avg:"Ortalama",reset:"İlerlemeyi sıfırla",sure:"Tüm ilerleme silinsin mi?",
   great:"Harika! Konuyu çok iyi kavradın.",good:"Güzel gidiyor. Bir kez daha okuyup tekrar deneyebilirsin.",try:"Başlangıç için iyi. Dersi tekrar oku ve yeniden dene.",
-  correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan · v22.11-f",cont:"Devam"},
+  correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan · v22.11-i",cont:"Devam"},
  de:{lsnVoice:"Stimme",lsnAutoV:"Automatisch",ppOpt:"App-Stimme: Thorsten",ppLoad:"Stimme wird geladen",ppAsk:"Die App-Stimme lädt beim ersten Mal ca. 100 MB (einmalig). WLAN empfohlen. Fortfahren?",ppFail:"App-Stimme nicht verfügbar.",lsnMale:"Männerstimme (falls vorhanden)",lsnDeep:"Tiefe Stimme",lsnNote:"Wird mit der Vorlesestimme deines Geräts wiedergegeben. · Version 22.11.-d",lsn:"Anhören",lsnNoVoice:"Auf deinem Gerät wurde keine deutsche Stimme gefunden. Installiere in den Einstellungen ein deutsches Sprachpaket.",lsnNoApi:"Dieser Browser unterstützt das Vorlesen nicht.",lsnEnd:"Ende des Buches.",tKD:"Koran & Gebet",kdSub:"Der Heilige Koran und Gebetsbüchlein. Die Seiten erscheinen wie im gedruckten Buch.",kdPages:"Seiten",kdStart:"Von vorn beginnen",kdResume:"Dort weiterlesen, wo du aufgehört hast",kdSurahs:"Suren",kdGoto:"Zur Seite",kdGo:"Los",kdPrev:"Zurück",kdNext:"Weiter",kdErr:"Die Seite konnte nicht geladen werden. Dieser Bereich funktioniert, wenn die App über ihre Internetadresse (mit dem Ordner kd) geöffnet wird.",kdOff:"Für Offline-Nutzung herunterladen",kdOffRun:"Wird heruntergeladen…",kdOffDone:"Heruntergeladen. Dieses Buch öffnet sich jetzt auch ohne Internet.",kdOffNo:"Offline-Download ist in dieser Ansicht nicht verfügbar.",kdZoom:"Vergrößern",kdHatim:"Khatm-Gebet",kdIdx:"Verzeichnis",app:"Weisheitsheft",tHome:"Heute",tBooks:"Bücher",tStats:"Fortschritt",tRead:"Lesen",readAll:"Alle Bücher lesen",readAllSub:"Wähle ein Buch und lies es Kapitel für Kapitel.",chap:"Kapitel",chW:"Kapitel",onlyTr:"Dieses Buch liegt nur auf Türkisch vor.",bookCh:"Kapitel des Buches",appx:"Anhang und Verzeichnisse",hello:"Willkommen",helloSub:"Jeden Tag eine kurze Lektion aus drei Büchern und ein kleines Quiz.",
   today:"Lektion des Tages",open:"Lektion öffnen",readBook:"Buch lesen",lessons:"Tägliche Lektionen",quizStart:"Quiz starten",question:"Frage",next:"Weiter",finish:"Beenden",
   score:"Ergebnis",again:"Nochmal versuchen",toBook:"Zur Lektionsliste",nextLesson:"Nächste Lektion",prevLesson:"Vorherige Lektion",doneBadge:"Gelesen",best:"Beste",streak:"Tage in Folge",days:"Tage",
@@ -714,7 +714,7 @@ var S={
   builtin:"Aktuell wird zu jeder Lektion ein Lesetext angezeigt. Unten kannst du den vollständigen Buchtext hinzufügen.",full:"Vollständiger Buchtext",prev:"Zurück",nextCh:"Weiter",
   lessonsRead:"Gelesene Lektionen",quizzes:"Gelöste Quizze",avg:"Durchschnitt",reset:"Fortschritt zurücksetzen",sure:"Den gesamten Fortschritt löschen?",
   great:"Großartig! Du hast das Thema sehr gut verstanden.",good:"Gut gemacht. Lies die Lektion noch einmal und versuche es erneut.",try:"Ein guter Anfang. Lies die Lektion nochmal und versuche es erneut.",
-  correct:"Richtig",wrong:"Falsch",rightIs:"Richtig ist",qs:"Fragen",lessonWord:"Lektion",read:"Lesen",author:"İlyas Özkan · v22.11-f",cont:"Weiter"}
+  correct:"Richtig",wrong:"Falsch",rightIs:"Richtig ist",qs:"Fragen",lessonWord:"Lektion",read:"Lesen",author:"İlyas Özkan · v22.11-i",cont:"Weiter"}
 };
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 var lang=ls("hd_lang")==="de"?"de":"tr";
@@ -1176,11 +1176,11 @@ function ppEnsure(lang){
   function prog(n){done+=n;if(total)lsnMsg(T("ppLoad")+" %"+Math.min(99,Math.round(done/total*100)));}
   L.init=(function(){
     lsnMsg(T("ppLoad")+" …");
-    return fetch("tts/tts-"+lang+".json").then(function(r){if(r.ok){return r;}return fetch("tts-"+lang+".json");}).then(function(r){if(!r.ok)throw new Error("tts-"+lang+".json");return r.json();}).then(function(cfg){
+    var K=(lang==="tr"?"trd":lang);L.K=K;return fetch("tts/tts-"+K+".json").then(function(r){if(r.ok){return r;}return fetch("tts-"+K+".json");}).then(function(r){if(!r.ok)throw new Error("tts-"+K+".json");return r.json();}).then(function(cfg){
       L.cfg=cfg;total=cfg.hd_total+(PP.shared?0:29700000);
       return ppShared(prog).then(function(){
         var B=PP.base,chunks=[];for(var i=0;i<cfg.hd_chunks;i++)chunks.push(i);
-        return chunks.reduce(function(p,i){return p.then(function(a){return ppGet(B+"tts-"+lang+"-"+i+".bin",prog).then(function(b){a.push(b);return a;});});},Promise.resolve([]));
+        return chunks.reduce(function(p,i){return p.then(function(a){return ppGet(B+"tts-"+K+"-"+i+".bin",prog).then(function(b){a.push(b);return a;});});},Promise.resolve([]));
       });
     }).then(function(parts){
       return new Blob(parts).arrayBuffer().then(function(buf){return ort.InferenceSession.create(buf,{executionProviders:["wasm"]}).catch(function(e1){PP.e1=String(e1&&e1.message||e1);ort.env.wasm.wasmPaths=ORTV;return ort.InferenceSession.create(buf,{executionProviders:["wasm"]});});});
@@ -1189,8 +1189,8 @@ function ppEnsure(lang){
   L.init.catch(function(){L.init=null;});
   return L.init;
 }
+var LEXL=[["dair",[0]],["daire",[0]],["saat",[0,1]],["fiil",[0,1]],["şiir",[0,1]],["hayat",[1]],["kaide",[0]],["cami",[0]],["caiz",[0]],["kainat",[0]],["insan",[1]],["iman",[1]],["ihsan",[1]],["dua",[1]],["namaz",[1]],["hadis",[1]],["şehadet",[1]],["ibadet",[1]],["adalet",[1]],["hidayet",[1]],["sahabe",[1]],["ahlak",[1]],["cihad",[1]],["cihan",[1]],["hakikat",[1]],["tarikat",[1]],["resul",[1]],["rasul",[1]],["ruh",[0]],["nur",[0]],["kur'an",[1]],["kuran",[1]],["rahman",[1]],["rahim",[1]],["alem",[0]],["alim",[0]],["kamil",[0]],["imtihan",[2]]];
 function ppLong(ids,text,L){
-  if(!/[âîûêÂÎÛÊ]/.test(text))return ids;
   if(!L.inv){var inv={},m=L.cfg.phoneme_id_map;for(var k in m)inv[m[k][0]]=k;L.inv=inv;}
   var VOW="aeiouyɑɐɒɔəɛɜɨɪɯɵøœʉʊʌʏæ",groups=[],cur=[],i=0;
   while(i<ids.length){
@@ -1201,15 +1201,15 @@ function ppLong(ids,text,L){
   }
   if(cur.length)groups.push(cur);
   var words=text.split(/\s+/).filter(function(w){return /[A-Za-zÀ-ÿğışçöüĞİŞÇÖÜ]/.test(w);});
-  if(words.length!==groups.length)return ids;
+  if(words.length!==groups.length)return [];
   var ins=[];
   words.forEach(function(w,wi){
-    if(!/[âîûêÂÎÛÊ]/.test(w))return;
-    var lets=w.toLowerCase().replace(/[^a-zçğıöşüâîûê]/g,""),vi=0;
+    var lets=w.toLocaleLowerCase("tr").replace(/[^a-zçğıöşüâîûê]/g,""),vi=0,lx=null;
+    if(!/[âîûê]/.test(lets)){for(var q=0;q<LEXL.length;q++){var e=LEXL[q];if(lets.indexOf(e[0])===0&&lets.length<=e[0].length+7){lx=e[1];break;}}if(!lx)return;}
     for(var c=0;c<lets.length;c++){
       var ch=lets[c];
       if(/[aeıioöuüâîûê]/.test(ch)){
-        if(/[âîûê]/.test(ch)){
+        if(lx?lx.indexOf(vi)>=0:/[âîûê]/.test(ch)){
           var n=-1,pos=-1;
           groups[wi].forEach(function(p){if(VOW.indexOf(L.inv[ids[p]])>=0){n++;if(n===vi&&pos<0)pos=p;}});
           if(pos>=0)ins.push(pos);
@@ -1218,21 +1218,19 @@ function ppLong(ids,text,L){
       }
     }
   });
-  if(!ins.length)return ids;
-  var out=ids.slice();
-  ins.sort(function(a,b){return b-a;}).forEach(function(p){out.splice(p+2,0,122,0);});
-  return out;
+  return ins;
 }
 function ppIds(text,lang){
   PP.out="";
   PP.ph.callMain(["-l",lang,"--input",JSON.stringify([{text:text}]),"--espeak_data","/espeak-ng-data"]);
-  var j=JSON.parse(PP.out);return lang==="tr"?ppLong(j.phoneme_ids,text,PP.L[lang]):j.phoneme_ids;
+  var j=JSON.parse(PP.out);return {ids:j.phoneme_ids,lg:lang==="tr"?ppLong(j.phoneme_ids,text,PP.L[lang]):[]};
 }
 function ppSynth(text,rate,lang){
   var p=PP.chain.then(function(){
-    var L=PP.L[lang],ids=ppIds(text,lang),c=L.cfg.inference,len=ids.length;
+    var L=PP.L[lang],pr=ppIds(text,lang),ids=pr.ids,c=L.cfg.inference,len=ids.length;
     var big=new BigInt64Array(len);for(var i=0;i<len;i++)big[i]=BigInt(ids[i]);
     var feeds={input:new ort.Tensor("int64",big,[1,len]),input_lengths:new ort.Tensor("int64",BigInt64Array.from([BigInt(len)]),[1]),scales:new ort.Tensor("float32",Float32Array.from([c.noise_scale,1/rate,c.noise_w]),[3])};
+    if(L.cfg.hd_dur){var ds=new Float32Array(len);ds.fill(1);pr.lg.forEach(function(p){ds[p]=3.2;});feeds.dur_scale=new ort.Tensor("float32",ds,[1,1,len]);}
     return L.sess.run(feeds).then(function(o){return o.output.data;});
   });
   PP.chain=p.catch(function(){});
