@@ -1172,7 +1172,7 @@ function ppEnsure(){
       var f=o.f,u={"ort-wasm-simd.wasm":URL.createObjectURL(f[1]),"ort-wasm.wasm":URL.createObjectURL(f[2]),"piper_phonemize.wasm":URL.createObjectURL(f[4]),"piper_phonemize.data":URL.createObjectURL(f[5])};
       return ppScript(f[0]).then(function(){return ppScript(f[3]);}).then(function(){
         ort.env.wasm.numThreads=1;ort.env.wasm.proxy=false;ort.env.wasm.wasmPaths={"ort-wasm-simd.wasm":u["ort-wasm-simd.wasm"],"ort-wasm.wasm":u["ort-wasm.wasm"]};
-        return o.model.arrayBuffer().then(function(buf){return ort.InferenceSession.create(buf,{executionProviders:["wasm"]});});
+        return o.model.arrayBuffer().then(function(buf){return ort.InferenceSession.create(buf,{executionProviders:["wasm"]}).catch(function(e1){PP.e1=String(e1&&e1.message||e1);ort.env.wasm.wasmPaths=ORTV;return ort.InferenceSession.create(buf,{executionProviders:["wasm"]});});});
       }).then(function(s){PP.sess=s;return createPiperPhonemize({print:function(t){PP.out+=t;},printErr:function(){},locateFile:function(n){return u[n]||n;}});}).then(function(m){PP.ph=m;ls("hd_pp_ok","1");lsnMsg("");});
     });
   })();
@@ -1223,7 +1223,7 @@ function ppSpeak(g){
       var nx=ppAudio(TS.i+1);if(nx)nx.catch(function(){});
     });
   }).catch(function(e){
-    PP.avail=false;lsnMsg(T("ppFail"));
+    PP.avail=false;lsnMsg(T("ppFail")+" ["+String(e&&e.message||e).slice(0,140)+(PP.e1?" | "+PP.e1.slice(0,100):"")+"]");
     if(g===TS.gen&&TS.on)lsnSpeak();
   });
 }
