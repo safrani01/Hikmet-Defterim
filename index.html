@@ -173,9 +173,10 @@ img.kdp{display:block;width:100%;height:auto}
 .prose .lsn-cur{background:rgba(255,214,102,.35);border-radius:6px;box-shadow:0 0 0 4px rgba(255,214,102,.35)}
 
 .nvnav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px}.nvnav h2{margin:0;font-size:20px;text-align:center;flex:1}.nvnav .btn[disabled]{opacity:.35}
-.nvt{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-.nvr{display:flex;align-items:center;border-bottom:1px solid var(--line);min-height:44px}.nvr:last-child{border-bottom:0}
-.nvr.tod{background:var(--okbg)}.nvr.fut{opacity:.45}.nvh{font-size:11px;font-weight:700;color:var(--muted);min-height:34px;background:var(--bg)}
+.nvt{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.nvr{display:flex;align-items:center;border-bottom:1px solid var(--line);min-height:44px}.nvr:last-child{border-bottom:0;border-radius:0 0 15px 15px}
+.nvr.tod{background:var(--okbg)}.nvr.fut{opacity:.45}.nvh{font-size:10px;font-weight:700;color:var(--muted);min-height:36px;background:var(--bg);position:sticky;top:var(--toph,56px);z-index:6;border-radius:15px 15px 0 0;border-bottom:2px solid var(--line);hyphens:manual;-webkit-hyphens:manual;font-size:11px}
+.nvh .nvc{line-height:1.1;padding:0 1px}
 .nvd{width:44px;flex:none;text-align:center;font-weight:700}.nvd small{display:block;font-size:10px;color:var(--muted);font-weight:600;line-height:1}
 .nvc{flex:1;text-align:center;min-width:0}.nvs{width:34px;flex:none;text-align:center;font-size:11px;color:var(--muted)}
 .nvb{width:38px;height:38px;border:2px solid var(--line);border-radius:10px;background:var(--card);color:#fff;font-size:20px;font-weight:700;padding:0}
@@ -729,7 +730,7 @@ var S={
   builtin:"Şu an her dersin okuma metni gösteriliyor. Kitabın tam metnini aşağıdan ekleyebilirsin.",full:"Kitabın tam metni",prev:"Önceki",nextCh:"Sonraki",
   lessonsRead:"Okunan ders",quizzes:"Çözülen quiz",avg:"Ortalama",reset:"İlerlemeyi sıfırla",sure:"Tüm ilerleme silinsin mi?",
   great:"Harika! Konuyu çok iyi kavradın.",good:"Güzel gidiyor. Bir kez daha okuyup tekrar deneyebilirsin.",try:"Başlangıç için iyi. Dersi tekrar oku ve yeniden dene.",
-  correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan · v22.11-n",cont:"Devam"},
+  correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan · v22.11-q",cont:"Devam"},
  de:{lsnVoice:"Stimme",lsnAutoV:"Automatisch",ppOpt:"App-Stimme: Thorsten",ppLoad:"Stimme wird geladen",ppAsk:"Die App-Stimme lädt beim ersten Mal ca. 100 MB (einmalig). WLAN empfohlen. Fortfahren?",ppFail:"App-Stimme nicht verfügbar.",lsnMale:"Männerstimme (falls vorhanden)",lsnDeep:"Tiefe Stimme",lsnNote:"Wird mit der Vorlesestimme deines Geräts wiedergegeben. · Version 22.11.-d",lsn:"Anhören",lsnNoVoice:"Auf deinem Gerät wurde keine deutsche Stimme gefunden. Installiere in den Einstellungen ein deutsches Sprachpaket.",lsnNoApi:"Dieser Browser unterstützt das Vorlesen nicht.",lsnEnd:"Ende des Buches.",tKD:"Koran & Gebet",kdSub:"Der Heilige Koran und Gebetsbüchlein. Die Seiten erscheinen wie im gedruckten Buch.",kdPages:"Seiten",kdStart:"Von vorn beginnen",kdResume:"Dort weiterlesen, wo du aufgehört hast",kdSurahs:"Suren",kdGoto:"Zur Seite",kdGo:"Los",kdPrev:"Zurück",kdNext:"Weiter",kdErr:"Die Seite konnte nicht geladen werden. Dieser Bereich funktioniert, wenn die App über ihre Internetadresse (mit dem Ordner kd) geöffnet wird.",kdOff:"Für Offline-Nutzung herunterladen",kdOffRun:"Wird heruntergeladen…",kdOffDone:"Heruntergeladen. Dieses Buch öffnet sich jetzt auch ohne Internet.",kdOffNo:"Offline-Download ist in dieser Ansicht nicht verfügbar.",kdZoom:"Vergrößern",kdHatim:"Khatm-Gebet",kdIdx:"Verzeichnis",app:"Weisheitsheft",tHome:"Heute",tBooks:"Bücher",tStats:"Fortschritt",tRead:"Lesen",readAll:"Alle Bücher lesen",readAllSub:"Wähle ein Buch und lies es Kapitel für Kapitel.",chap:"Kapitel",chW:"Kapitel",onlyTr:"Dieses Buch liegt nur auf Türkisch vor.",bookCh:"Kapitel des Buches",appx:"Anhang und Verzeichnisse",hello:"Willkommen",helloSub:"Jeden Tag eine kurze Lektion aus drei Büchern und ein kleines Quiz.",
   today:"Lektion des Tages",open:"Lektion öffnen",readBook:"Buch lesen",lessons:"Tägliche Lektionen",quizStart:"Quiz starten",question:"Frage",next:"Weiter",finish:"Beenden",
   score:"Ergebnis",again:"Nochmal versuchen",toBook:"Zur Lektionsliste",nextLesson:"Nächste Lektion",prevLesson:"Vorherige Lektion",doneBadge:"Gelesen",best:"Beste",streak:"Tage in Folge",days:"Tage",
@@ -738,7 +739,7 @@ var S={
   builtin:"Aktuell wird zu jeder Lektion ein Lesetext angezeigt. Unten kannst du den vollständigen Buchtext hinzufügen.",full:"Vollständiger Buchtext",prev:"Zurück",nextCh:"Weiter",
   lessonsRead:"Gelesene Lektionen",quizzes:"Gelöste Quizze",avg:"Durchschnitt",reset:"Fortschritt zurücksetzen",sure:"Den gesamten Fortschritt löschen?",
   great:"Großartig! Du hast das Thema sehr gut verstanden.",good:"Gut gemacht. Lies die Lektion noch einmal und versuche es erneut.",try:"Ein guter Anfang. Lies die Lektion nochmal und versuche es erneut.",
-  correct:"Richtig",wrong:"Falsch",rightIs:"Richtig ist",qs:"Fragen",lessonWord:"Lektion",read:"Lesen",author:"İlyas Özkan · v22.11-n",cont:"Weiter"}
+  correct:"Richtig",wrong:"Falsch",rightIs:"Richtig ist",qs:"Fragen",lessonWord:"Lektion",read:"Lesen",author:"İlyas Özkan · v22.11-q",cont:"Weiter"}
 };
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 var lang=ls("hd_lang")==="de"?"de":"tr";
@@ -1358,11 +1359,12 @@ var NV={
  de:{t:"Gebetszeiten-Tabelle",sub:"Kreuze jedes verrichtete Gebet an, jedes zählt 1 Punkt.",pr:["Fadschr","Dhuhr","Asr","Maghrib","Ischa"],mo:["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],wd:["So","Mo","Di","Mi","Do","Fr","Sa"],day:"Tag",month:"Dieser Monat",total:"Gesamt",pts:"Punkte",hist:"Frühere Monate",print:"Drucken",printBlank:"Leere Tabelle drucken",printMine:"Mit meinen Kreuzen drucken",name:"Name:",sum:"Monatssumme:",note:"Die Einträge werden nur im Browser dieses Geräts gespeichert.",none:"Noch keine Einträge.",card:"Dieser Monat",future:"Künftige Tage können nicht markiert werden."}
 };
 function N(k){return NV[lang][k];}
+var NORD=[0,1,2,3,4];
 function nvLoad(){try{return JSON.parse(ls("hd_nv")||"{}")||{};}catch(e){return {};}}
 var nv=nvLoad();
 function nvSave(){ls("hd_nv",JSON.stringify(nv));}
 function nvKey(d){d=d||new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");}
-function nvPts(mk){var m=nv[mk]||{},n=0;Object.keys(m).forEach(function(k){(m[k]||[]).forEach(function(x){if(x)n++;});});return n;}
+function nvPts(mk){var m=nv[mk]||{},n=0;Object.keys(m).forEach(function(k){NORD.forEach(function(i){if((m[k]||[])[i])n++;});});return n;}
 function nvTotal(){var n=0;Object.keys(nv).forEach(function(k){n+=nvPts(k);});return n;}
 function nvDays(mk){var p=mk.split("-");return new Date(+p[0],+p[1],0).getDate();}
 function nvName(mk){var p=mk.split("-");return N("mo")[+p[1]-1]+" "+p[0];}
@@ -1375,16 +1377,16 @@ function nvBar(mk){
 function vNamaz(mk){
   var cur=nvKey();
   if(!/^\d{4}-\d{2}$/.test(mk||"")||mk>cur)mk=cur;
-  var B={col:"#2a5d9f"};colorize(B);setHead(lang==="tr"?"Namaz Cetveli":"Gebetstabelle","#/");setTabs("home");
+  var B={col:"#2a5d9f"};colorize(B);var tp=document.getElementById("top");if(tp)document.documentElement.style.setProperty("--toph",tp.offsetHeight+"px");setHead(lang==="tr"?"Namaz Cetveli":"Gebetstabelle","#/");setTabs("home");
   var td=new Date(),isCur=mk===cur,tday=td.getDate(),days=nvDays(mk),p=mk.split("-"),m=nv[mk]||{};
   var h='<p class="note" style="margin-top:0">'+esc(N("sub"))+'</p>';
   h+='<div class="nvnav"><button class="btn ghost sm" data-go="#/namaz/'+nvShift(mk,-1)+'">‹</button><h2>'+esc(nvName(mk))+'</h2><button class="btn ghost sm" '+(isCur?'disabled':'data-go="#/namaz/'+nvShift(mk,1)+'"')+'>›</button></div>';
-  h+='<div class="nvt"><div class="nvr nvh"><span class="nvd">'+esc(N("day"))+'</span>'+N("pr").map(function(x){return '<span class="nvc">'+esc(x)+'</span>';}).join("")+'<span class="nvs"></span></div>';
+  h+='<div class="nvt"><div class="nvr nvh"><span class="nvd">'+esc(N("day"))+'</span>'+NORD.map(function(i){return '<span class="nvc">'+esc(N("pr")[i])+'</span>';}).join("")+'</div>';
   for(var d=1;d<=days;d++){
-    var a=m[d]||[0,0,0,0,0],fut=isCur&&d>tday,wd=new Date(+p[0],+p[1]-1,d).getDay(),c=0;
+    var a=m[d]||[],fut=isCur&&d>tday,wd=new Date(+p[0],+p[1]-1,d).getDay();
     h+='<div class="nvr'+(isCur&&d===tday?' tod':'')+(fut?' fut':'')+'"><span class="nvd">'+d+'<small>'+esc(N("wd")[wd])+'</small></span>';
-    for(var i=0;i<5;i++){if(a[i])c++;h+='<span class="nvc"><button class="nvb'+(a[i]?' on':'')+'" data-nv="'+mk+'|'+d+'|'+i+'"'+(fut?' disabled':'')+' aria-label="'+esc(N("pr")[i])+'">'+(a[i]?'✓':'')+'</button></span>';}
-    h+='<span class="nvs">'+(c?c+'/5':'')+'</span></div>';
+    NORD.forEach(function(i){h+='<span class="nvc"><button class="nvb'+(a[i]?' on':'')+'" data-nv="'+mk+'|'+d+'|'+i+'"'+(fut?' disabled':'')+' aria-label="'+esc(N("pr")[i])+'">'+(a[i]?'✓':'')+'</button></span>';});
+    h+='</div>';
   }
   h+='</div>';
   h+='<div class="stack" style="margin:14px 0"><button class="btn full" data-nvp="'+mk+'|0">🖨️ '+esc(N("printMine"))+'</button><button class="btn ghost full" data-nvp="'+mk+'|1">🖨️ '+esc(N("printBlank"))+'</button></div>';
@@ -1400,8 +1402,8 @@ function nvPrint(mk,blank){
   var p=mk.split("-"),days=nvDays(mk),m=nv[mk]||{},x=document.getElementById("npprint");
   if(x)x.remove();
   x=document.createElement("div");x.id="npprint";
-  var h='<h1>'+esc(N("t"))+' · '+esc(nvName(mk))+'</h1><div class="npn">'+esc(N("name"))+' ______________________________</div><table><thead><tr><th>'+esc(N("day"))+'</th>'+N("pr").map(function(s){return '<th>'+esc(s)+'</th>';}).join("")+'</tr></thead><tbody>';
-  for(var d=1;d<=days;d++){var a=blank?[0,0,0,0,0]:(m[d]||[0,0,0,0,0]),wd=new Date(+p[0],+p[1]-1,d).getDay();h+='<tr><td>'+d+' <small>'+esc(N("wd")[wd])+'</small></td>'+a.map(function(v){return '<td>'+(v?'✓':'')+'</td>';}).join("")+'</tr>';}
+  var h='<h1>'+esc(N("t"))+' · '+esc(nvName(mk))+'</h1><div class="npn">'+esc(N("name"))+' ______________________________</div><table><thead><tr><th>'+esc(N("day"))+'</th>'+NORD.map(function(i){return '<th>'+esc(N("pr")[i].replace("­",""))+'</th>';}).join("")+'</tr></thead><tbody>';
+  for(var d=1;d<=days;d++){var a=blank?[]:(m[d]||[]),wd=new Date(+p[0],+p[1]-1,d).getDay();h+='<tr><td>'+d+' <small>'+esc(N("wd")[wd])+'</small></td>'+NORD.map(function(i){return '<td>'+(a[i]?'✓':'')+'</td>';}).join("")+'</tr>';}
   h+='</tbody></table><div class="npn" style="margin-top:8px">'+esc(N("sum"))+' '+(blank?'______':'<b>'+nvPts(mk)+'</b> '+esc(N("pts")))+'</div>';
   x.innerHTML=h;document.body.appendChild(x);
   document.documentElement.classList.add("npp");
