@@ -705,7 +705,7 @@ var S={
   builtin:"Şu an her dersin okuma metni gösteriliyor. Kitabın tam metnini aşağıdan ekleyebilirsin.",full:"Kitabın tam metni",prev:"Önceki",nextCh:"Sonraki",
   lessonsRead:"Okunan ders",quizzes:"Çözülen quiz",avg:"Ortalama",reset:"İlerlemeyi sıfırla",sure:"Tüm ilerleme silinsin mi?",
   great:"Harika! Konuyu çok iyi kavradın.",good:"Güzel gidiyor. Bir kez daha okuyup tekrar deneyebilirsin.",try:"Başlangıç için iyi. Dersi tekrar oku ve yeniden dene.",
-  correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan · v22.11-i",cont:"Devam"},
+  correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan · v22.11-j",cont:"Devam"},
  de:{lsnVoice:"Stimme",lsnAutoV:"Automatisch",ppOpt:"App-Stimme: Thorsten",ppLoad:"Stimme wird geladen",ppAsk:"Die App-Stimme lädt beim ersten Mal ca. 100 MB (einmalig). WLAN empfohlen. Fortfahren?",ppFail:"App-Stimme nicht verfügbar.",lsnMale:"Männerstimme (falls vorhanden)",lsnDeep:"Tiefe Stimme",lsnNote:"Wird mit der Vorlesestimme deines Geräts wiedergegeben. · Version 22.11.-d",lsn:"Anhören",lsnNoVoice:"Auf deinem Gerät wurde keine deutsche Stimme gefunden. Installiere in den Einstellungen ein deutsches Sprachpaket.",lsnNoApi:"Dieser Browser unterstützt das Vorlesen nicht.",lsnEnd:"Ende des Buches.",tKD:"Koran & Gebet",kdSub:"Der Heilige Koran und Gebetsbüchlein. Die Seiten erscheinen wie im gedruckten Buch.",kdPages:"Seiten",kdStart:"Von vorn beginnen",kdResume:"Dort weiterlesen, wo du aufgehört hast",kdSurahs:"Suren",kdGoto:"Zur Seite",kdGo:"Los",kdPrev:"Zurück",kdNext:"Weiter",kdErr:"Die Seite konnte nicht geladen werden. Dieser Bereich funktioniert, wenn die App über ihre Internetadresse (mit dem Ordner kd) geöffnet wird.",kdOff:"Für Offline-Nutzung herunterladen",kdOffRun:"Wird heruntergeladen…",kdOffDone:"Heruntergeladen. Dieses Buch öffnet sich jetzt auch ohne Internet.",kdOffNo:"Offline-Download ist in dieser Ansicht nicht verfügbar.",kdZoom:"Vergrößern",kdHatim:"Khatm-Gebet",kdIdx:"Verzeichnis",app:"Weisheitsheft",tHome:"Heute",tBooks:"Bücher",tStats:"Fortschritt",tRead:"Lesen",readAll:"Alle Bücher lesen",readAllSub:"Wähle ein Buch und lies es Kapitel für Kapitel.",chap:"Kapitel",chW:"Kapitel",onlyTr:"Dieses Buch liegt nur auf Türkisch vor.",bookCh:"Kapitel des Buches",appx:"Anhang und Verzeichnisse",hello:"Willkommen",helloSub:"Jeden Tag eine kurze Lektion aus drei Büchern und ein kleines Quiz.",
   today:"Lektion des Tages",open:"Lektion öffnen",readBook:"Buch lesen",lessons:"Tägliche Lektionen",quizStart:"Quiz starten",question:"Frage",next:"Weiter",finish:"Beenden",
   score:"Ergebnis",again:"Nochmal versuchen",toBook:"Zur Lektionsliste",nextLesson:"Nächste Lektion",prevLesson:"Vorherige Lektion",doneBadge:"Gelesen",best:"Beste",streak:"Tage in Folge",days:"Tage",
@@ -714,7 +714,7 @@ var S={
   builtin:"Aktuell wird zu jeder Lektion ein Lesetext angezeigt. Unten kannst du den vollständigen Buchtext hinzufügen.",full:"Vollständiger Buchtext",prev:"Zurück",nextCh:"Weiter",
   lessonsRead:"Gelesene Lektionen",quizzes:"Gelöste Quizze",avg:"Durchschnitt",reset:"Fortschritt zurücksetzen",sure:"Den gesamten Fortschritt löschen?",
   great:"Großartig! Du hast das Thema sehr gut verstanden.",good:"Gut gemacht. Lies die Lektion noch einmal und versuche es erneut.",try:"Ein guter Anfang. Lies die Lektion nochmal und versuche es erneut.",
-  correct:"Richtig",wrong:"Falsch",rightIs:"Richtig ist",qs:"Fragen",lessonWord:"Lektion",read:"Lesen",author:"İlyas Özkan · v22.11-i",cont:"Weiter"}
+  correct:"Richtig",wrong:"Falsch",rightIs:"Richtig ist",qs:"Fragen",lessonWord:"Lektion",read:"Lesen",author:"İlyas Özkan · v22.11-j",cont:"Weiter"}
 };
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
 var lang=ls("hd_lang")==="de"?"de":"tr";
@@ -1155,6 +1155,9 @@ function ppGet(url,prog){
   });
 }
 function ppScript(blob){return new Promise(function(ok,no){var s=document.createElement("script");s.src=URL.createObjectURL(blob);s.onload=ok;s.onerror=function(){no(new Error("script"));};document.head.appendChild(s);});}
+function ppClean(){
+  try{if(!window.caches)return;["hd-tts-v1","hd-v1"].forEach(function(n){caches.open(n).then(function(c){c.keys().then(function(ks){ks.forEach(function(r){if(/tts-tr(-\d+\.bin|\.json)$/.test(r.url))c.delete(r);});});});});}catch(e){}
+}
 function ppShared(prog){
   if(PP.shared)return PP.shared;
   var B=null;
@@ -1184,7 +1187,7 @@ function ppEnsure(lang){
       });
     }).then(function(parts){
       return new Blob(parts).arrayBuffer().then(function(buf){return ort.InferenceSession.create(buf,{executionProviders:["wasm"]}).catch(function(e1){PP.e1=String(e1&&e1.message||e1);ort.env.wasm.wasmPaths=ORTV;return ort.InferenceSession.create(buf,{executionProviders:["wasm"]});});});
-    }).then(function(s){L.sess=s;ls("hd_pp_ok_"+lang,"1");lsnMsg("");});
+    }).then(function(s){L.sess=s;ls("hd_pp_ok_"+lang,"1");lsnMsg("");ppClean();});
   })();
   L.init.catch(function(){L.init=null;});
   return L.init;
