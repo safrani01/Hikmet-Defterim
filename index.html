@@ -706,7 +706,7 @@ var S={
   lessonsRead:"Okunan ders",quizzes:"Çözülen quiz",avg:"Ortalama",reset:"İlerlemeyi sıfırla",sure:"Tüm ilerleme silinsin mi?",
   great:"Harika! Konuyu çok iyi kavradın.",good:"Güzel gidiyor. Bir kez daha okuyup tekrar deneyebilirsin.",try:"Başlangıç için iyi. Dersi tekrar oku ve yeniden dene.",
   correct:"Doğru",wrong:"Yanlış",rightIs:"Doğru cevap",qs:"soru",lessonWord:"Ders",read:"Oku",author:"İlyas Özkan",cont:"Devam"},
- de:{lsnVoice:"Stimme",lsnAutoV:"Automatisch",ppOpt:"App-Stimme: Dfki",ppLoad:"Stimme wird geladen",ppAsk:"Die App-Stimme lädt beim ersten Mal ca. 100 MB (einmalig). WLAN empfohlen. Fortfahren?",ppFail:"App-Stimme nicht verfügbar.",lsnMale:"Männerstimme (falls vorhanden)",lsnDeep:"Tiefe Stimme",lsnNote:"Wird mit der Vorlesestimme deines Geräts wiedergegeben.",lsn:"Anhören",lsnNoVoice:"Auf deinem Gerät wurde keine deutsche Stimme gefunden. Installiere in den Einstellungen ein deutsches Sprachpaket.",lsnNoApi:"Dieser Browser unterstützt das Vorlesen nicht.",lsnEnd:"Ende des Buches.",tKD:"Koran & Gebet",kdSub:"Der Heilige Koran und Gebetsbüchlein. Die Seiten erscheinen wie im gedruckten Buch.",kdPages:"Seiten",kdStart:"Von vorn beginnen",kdResume:"Dort weiterlesen, wo du aufgehört hast",kdSurahs:"Suren",kdGoto:"Zur Seite",kdGo:"Los",kdPrev:"Zurück",kdNext:"Weiter",kdErr:"Die Seite konnte nicht geladen werden. Dieser Bereich funktioniert, wenn die App über ihre Internetadresse (mit dem Ordner kd) geöffnet wird.",kdOff:"Für Offline-Nutzung herunterladen",kdOffRun:"Wird heruntergeladen…",kdOffDone:"Heruntergeladen. Dieses Buch öffnet sich jetzt auch ohne Internet.",kdOffNo:"Offline-Download ist in dieser Ansicht nicht verfügbar.",kdZoom:"Vergrößern",kdHatim:"Khatm-Gebet",kdIdx:"Verzeichnis",app:"Weisheitsheft",tHome:"Heute",tBooks:"Bücher",tStats:"Fortschritt",tRead:"Lesen",readAll:"Alle Bücher lesen",readAllSub:"Wähle ein Buch und lies es Kapitel für Kapitel.",chap:"Kapitel",chW:"Kapitel",onlyTr:"Dieses Buch liegt nur auf Türkisch vor.",bookCh:"Kapitel des Buches",appx:"Anhang und Verzeichnisse",hello:"Willkommen",helloSub:"Jeden Tag eine kurze Lektion aus drei Büchern und ein kleines Quiz.",
+ de:{lsnVoice:"Stimme",lsnAutoV:"Automatisch",ppOpt:"App-Stimme: Thorsten",ppLoad:"Stimme wird geladen",ppAsk:"Die App-Stimme lädt beim ersten Mal ca. 100 MB (einmalig). WLAN empfohlen. Fortfahren?",ppFail:"App-Stimme nicht verfügbar.",lsnMale:"Männerstimme (falls vorhanden)",lsnDeep:"Tiefe Stimme",lsnNote:"Wird mit der Vorlesestimme deines Geräts wiedergegeben.",lsn:"Anhören",lsnNoVoice:"Auf deinem Gerät wurde keine deutsche Stimme gefunden. Installiere in den Einstellungen ein deutsches Sprachpaket.",lsnNoApi:"Dieser Browser unterstützt das Vorlesen nicht.",lsnEnd:"Ende des Buches.",tKD:"Koran & Gebet",kdSub:"Der Heilige Koran und Gebetsbüchlein. Die Seiten erscheinen wie im gedruckten Buch.",kdPages:"Seiten",kdStart:"Von vorn beginnen",kdResume:"Dort weiterlesen, wo du aufgehört hast",kdSurahs:"Suren",kdGoto:"Zur Seite",kdGo:"Los",kdPrev:"Zurück",kdNext:"Weiter",kdErr:"Die Seite konnte nicht geladen werden. Dieser Bereich funktioniert, wenn die App über ihre Internetadresse (mit dem Ordner kd) geöffnet wird.",kdOff:"Für Offline-Nutzung herunterladen",kdOffRun:"Wird heruntergeladen…",kdOffDone:"Heruntergeladen. Dieses Buch öffnet sich jetzt auch ohne Internet.",kdOffNo:"Offline-Download ist in dieser Ansicht nicht verfügbar.",kdZoom:"Vergrößern",kdHatim:"Khatm-Gebet",kdIdx:"Verzeichnis",app:"Weisheitsheft",tHome:"Heute",tBooks:"Bücher",tStats:"Fortschritt",tRead:"Lesen",readAll:"Alle Bücher lesen",readAllSub:"Wähle ein Buch und lies es Kapitel für Kapitel.",chap:"Kapitel",chW:"Kapitel",onlyTr:"Dieses Buch liegt nur auf Türkisch vor.",bookCh:"Kapitel des Buches",appx:"Anhang und Verzeichnisse",hello:"Willkommen",helloSub:"Jeden Tag eine kurze Lektion aus drei Büchern und ein kleines Quiz.",
   today:"Lektion des Tages",open:"Lektion öffnen",readBook:"Buch lesen",lessons:"Tägliche Lektionen",quizStart:"Quiz starten",question:"Frage",next:"Weiter",finish:"Beenden",
   score:"Ergebnis",again:"Nochmal versuchen",toBook:"Zur Lektionsliste",nextLesson:"Nächste Lektion",prevLesson:"Vorherige Lektion",doneBadge:"Gelesen",best:"Beste",streak:"Tage in Folge",days:"Tage",
   chapters:"Kapitel",resume:"Dort weiterlesen, wo du aufgehört hast",importT:"Vollständigen Buchtext laden",importH:"Wähle den Text des Buches in dieser Sprache als .md oder .txt oder füge ihn ein. Jedes Kapitel muss mit einer Zeile „## Kapitelüberschrift“ beginnen. Der Text wird nur auf diesem Gerät gespeichert.",
@@ -1076,7 +1076,7 @@ function lsnVoices(lang){
 function lsnFill(){
   var d=lsnBar(),sel=d.querySelector("#lsnv");if(!sel)return;
   var vl=lsnVoices(TS.lang),cur=ls("hd_vc_"+TS.lang)||"";
-  var h='<option value="">'+esc(T("lsnAutoV"))+'</option><option value="__male"'+(cur==="__male"?' selected':'')+'>♂ '+esc(T("lsnMale"))+'</option>'+(TS.lang==="tr"?'<option value="__piper"'+(cur==="__piper"?' selected':'')+'>♂ '+esc(T("ppOpt"))+'</option>':'');
+  var h='<option value="">'+esc(T("lsnAutoV"))+'</option>'+('<option value="__piper"'+(cur==="__piper"?' selected':'')+'>♂ '+esc(T("ppOpt"))+'</option>');
   vl.forEach(function(v,i){h+='<option value="'+esc(v.voiceURI||v.name)+'"'+((v.voiceURI===cur||v.name===cur)?' selected':'')+'>'+esc((lsnG(v)==="m"?"♂ ":lsnG(v)==="f"?"♀ ":"")+v.name.replace(/^Microsoft |^Google /,"")+" ("+v.lang+")")+'</option>';});
   sel.innerHTML=h;
   sel.style.display=vl.length?"":"none";
@@ -1137,7 +1137,7 @@ function lsnDone(){
   if(nx<TS.n){TS.pending={id:TS.id,ch:nx};location.hash="#/read/"+TS.id+"/"+nx;}
   else{lsnUI();lsnMsg(T("lsnEnd"));lsnWake(false);}
 }
-var PP={avail:null,init:null,base:null,cfg:null,sess:null,ph:null,ctx:null,src:null,chain:Promise.resolve(),cache:{}};
+var PP={avail:null,init:null,base:null,cfg:null,sess:null,ph:null,L:{},lang:"tr",ctx:null,src:null,chain:Promise.resolve(),cache:{}};
 var ORTV="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.3/dist/";
 function ppCache(){return (window.caches?caches.open("hd-tts-v1"):Promise.reject(new Error("nocache")));}
 function ppGet(url,prog){
@@ -1155,49 +1155,93 @@ function ppGet(url,prog){
   });
 }
 function ppScript(blob){return new Promise(function(ok,no){var s=document.createElement("script");s.src=URL.createObjectURL(blob);s.onload=ok;s.onerror=function(){no(new Error("script"));};document.head.appendChild(s);});}
-function ppEnsure(){
-  if(PP.init)return PP.init;
+function ppShared(prog){
+  if(PP.shared)return PP.shared;
+  var B=null;
+  PP.shared=fetch("tts/piper_phonemize.wasm",{method:"HEAD"}).then(function(r){B=r.ok?"tts/":"";PP.base=B;return Promise.all([ppGet(ORTV+"ort.min.js",prog),ppGet(ORTV+"ort-wasm-simd.wasm",prog),ppGet(ORTV+"ort-wasm.wasm",prog),ppGet(B+"piper_phonemize.js",prog),ppGet(B+"piper_phonemize.wasm",prog),ppGet(B+"piper_phonemize.data",prog)]);}).then(function(f){
+    var u={"ort-wasm-simd.wasm":URL.createObjectURL(f[1]),"ort-wasm.wasm":URL.createObjectURL(f[2]),"piper_phonemize.wasm":URL.createObjectURL(f[4]),"piper_phonemize.data":URL.createObjectURL(f[5])};
+    return ppScript(f[0]).then(function(){return ppScript(f[3]);}).then(function(){
+      ort.env.wasm.numThreads=1;ort.env.wasm.proxy=false;ort.env.wasm.wasmPaths={"ort-wasm-simd.wasm":u["ort-wasm-simd.wasm"],"ort-wasm.wasm":u["ort-wasm.wasm"]};
+      return createPiperPhonemize({print:function(t){PP.out+=t;},printErr:function(){},locateFile:function(n){return u[n]||n;}});
+    }).then(function(m){PP.ph=m;});
+  });
+  PP.shared.catch(function(){PP.shared=null;});
+  return PP.shared;
+}
+function ppEnsure(lang){
+  var L=PP.L[lang]=PP.L[lang]||{};
+  PP.lang=lang;
+  if(L.init)return L.init;
   var done=0,total=0;
   function prog(n){done+=n;if(total)lsnMsg(T("ppLoad")+" %"+Math.min(99,Math.round(done/total*100)));}
-  PP.init=(function(){
+  L.init=(function(){
     lsnMsg(T("ppLoad")+" …");
-    return fetch("tts/tts-tr.json").then(function(r){if(r.ok){PP.base="tts/";return r;}PP.base="";return fetch("tts-tr.json");}).then(function(r){if(!r.ok)throw new Error("cfg");return r.json();}).then(function(cfg){
-      PP.cfg=cfg;total=cfg.hd_total+18700000+11000000;
-      var B=PP.base;
-      return Promise.all([ppGet(ORTV+"ort.min.js",prog),ppGet(ORTV+"ort-wasm-simd.wasm",prog),ppGet(ORTV+"ort-wasm.wasm",prog),ppGet(B+"piper_phonemize.js",prog),ppGet(B+"piper_phonemize.wasm",prog),ppGet(B+"piper_phonemize.data",prog)]).then(function(f){
-        var chunks=[];for(var i=0;i<cfg.hd_chunks;i++)chunks.push(i);
-        return chunks.reduce(function(p,i){return p.then(function(a){return ppGet(B+"tts-tr-"+i+".bin",prog).then(function(b){a.push(b);return a;});});},Promise.resolve([])).then(function(parts){return {f:f,model:new Blob(parts)};});
+    return fetch("tts/tts-"+lang+".json").then(function(r){if(r.ok){return r;}return fetch("tts-"+lang+".json");}).then(function(r){if(!r.ok)throw new Error("tts-"+lang+".json");return r.json();}).then(function(cfg){
+      L.cfg=cfg;total=cfg.hd_total+(PP.shared?0:29700000);
+      return ppShared(prog).then(function(){
+        var B=PP.base,chunks=[];for(var i=0;i<cfg.hd_chunks;i++)chunks.push(i);
+        return chunks.reduce(function(p,i){return p.then(function(a){return ppGet(B+"tts-"+lang+"-"+i+".bin",prog).then(function(b){a.push(b);return a;});});},Promise.resolve([]));
       });
-    }).then(function(o){
-      var f=o.f,u={"ort-wasm-simd.wasm":URL.createObjectURL(f[1]),"ort-wasm.wasm":URL.createObjectURL(f[2]),"piper_phonemize.wasm":URL.createObjectURL(f[4]),"piper_phonemize.data":URL.createObjectURL(f[5])};
-      return ppScript(f[0]).then(function(){return ppScript(f[3]);}).then(function(){
-        ort.env.wasm.numThreads=1;ort.env.wasm.proxy=false;ort.env.wasm.wasmPaths={"ort-wasm-simd.wasm":u["ort-wasm-simd.wasm"],"ort-wasm.wasm":u["ort-wasm.wasm"]};
-        return o.model.arrayBuffer().then(function(buf){return ort.InferenceSession.create(buf,{executionProviders:["wasm"]}).catch(function(e1){PP.e1=String(e1&&e1.message||e1);ort.env.wasm.wasmPaths=ORTV;return ort.InferenceSession.create(buf,{executionProviders:["wasm"]});});});
-      }).then(function(s){PP.sess=s;return createPiperPhonemize({print:function(t){PP.out+=t;},printErr:function(){},locateFile:function(n){return u[n]||n;}});}).then(function(m){PP.ph=m;ls("hd_pp_ok","1");lsnMsg("");});
-    });
+    }).then(function(parts){
+      return new Blob(parts).arrayBuffer().then(function(buf){return ort.InferenceSession.create(buf,{executionProviders:["wasm"]}).catch(function(e1){PP.e1=String(e1&&e1.message||e1);ort.env.wasm.wasmPaths=ORTV;return ort.InferenceSession.create(buf,{executionProviders:["wasm"]});});});
+    }).then(function(s){L.sess=s;ls("hd_pp_ok_"+lang,"1");lsnMsg("");});
   })();
-  PP.init.catch(function(){PP.init=null;});
-  return PP.init;
+  L.init.catch(function(){L.init=null;});
+  return L.init;
 }
-function ppIds(text){
+function ppLong(ids,text,L){
+  if(!/[âîûêÂÎÛÊ]/.test(text))return ids;
+  if(!L.inv){var inv={},m=L.cfg.phoneme_id_map;for(var k in m)inv[m[k][0]]=k;L.inv=inv;}
+  var VOW="aeiouyɑɐɒɔəɛɜɨɪɯɵøœʉʊʌʏæ",groups=[],cur=[],i=0;
+  while(i<ids.length){
+    var v=ids[i];
+    if(v===0||(v===1&&ids[i+1]===0)){i++;continue;}
+    if(v===2||v===3){if(cur.length){groups.push(cur);cur=[];}i++;continue;}
+    cur.push(i);i++;
+  }
+  if(cur.length)groups.push(cur);
+  var words=text.split(/\s+/).filter(function(w){return /[A-Za-zÀ-ÿğışçöüĞİŞÇÖÜ]/.test(w);});
+  if(words.length!==groups.length)return ids;
+  var ins=[];
+  words.forEach(function(w,wi){
+    if(!/[âîûêÂÎÛÊ]/.test(w))return;
+    var lets=w.toLowerCase().replace(/[^a-zçğıöşüâîûê]/g,""),vi=0;
+    for(var c=0;c<lets.length;c++){
+      var ch=lets[c];
+      if(/[aeıioöuüâîûê]/.test(ch)){
+        if(/[âîûê]/.test(ch)){
+          var n=-1,pos=-1;
+          groups[wi].forEach(function(p){if(VOW.indexOf(L.inv[ids[p]])>=0){n++;if(n===vi&&pos<0)pos=p;}});
+          if(pos>=0)ins.push(pos);
+        }
+        vi++;
+      }
+    }
+  });
+  if(!ins.length)return ids;
+  var out=ids.slice();
+  ins.sort(function(a,b){return b-a;}).forEach(function(p){out.splice(p+2,0,122,0);});
+  return out;
+}
+function ppIds(text,lang){
   PP.out="";
-  PP.ph.callMain(["-l","tr","--input",JSON.stringify([{text:text}]),"--espeak_data","/espeak-ng-data"]);
-  var j=JSON.parse(PP.out);return j.phoneme_ids;
+  PP.ph.callMain(["-l",lang,"--input",JSON.stringify([{text:text}]),"--espeak_data","/espeak-ng-data"]);
+  var j=JSON.parse(PP.out);return lang==="tr"?ppLong(j.phoneme_ids,text,PP.L[lang]):j.phoneme_ids;
 }
-function ppSynth(text,rate){
+function ppSynth(text,rate,lang){
   var p=PP.chain.then(function(){
-    var ids=ppIds(text),c=PP.cfg.inference,len=ids.length;
+    var L=PP.L[lang],ids=ppIds(text,lang),c=L.cfg.inference,len=ids.length;
     var big=new BigInt64Array(len);for(var i=0;i<len;i++)big[i]=BigInt(ids[i]);
     var feeds={input:new ort.Tensor("int64",big,[1,len]),input_lengths:new ort.Tensor("int64",BigInt64Array.from([BigInt(len)]),[1]),scales:new ort.Tensor("float32",Float32Array.from([c.noise_scale,1/rate,c.noise_w]),[3])};
-    return PP.sess.run(feeds).then(function(o){return o.output.data;});
+    return L.sess.run(feeds).then(function(o){return o.output.data;});
   });
   PP.chain=p.catch(function(){});
   return p;
 }
 function ppAudio(i){
   var c=TS.q[i];if(!c)return null;
-  var k=i+"|"+TS.rate+"|"+c.text;
-  if(!PP.cache[k]){var ks=Object.keys(PP.cache);if(ks.length>4)delete PP.cache[ks[0]];PP.cache[k]=ppSynth(c.text,TS.rate);}
+  var k=TS.lang+"|"+i+"|"+TS.rate+"|"+c.text;
+  if(!PP.cache[k]){var ks=Object.keys(PP.cache);if(ks.length>4)delete PP.cache[ks[0]];PP.cache[k]=ppSynth(c.text,TS.rate,TS.lang);}
   return PP.cache[k];
 }
 function ppStop(){if(PP.src){try{PP.src.onended=null;PP.src.stop();}catch(e){}PP.src=null;}}
@@ -1209,13 +1253,13 @@ function ppCtx(){
 function ppPlay(data,end){
   var ctx=ppCtx();if(!ctx)throw new Error("noaudio");
   var n=data.length,pk=0;for(var i=0;i<n;i++){var a=Math.abs(data[i]);if(a>pk)pk=a;}
-  var g=pk>0?Math.min(4,0.9/pk):1,buf=ctx.createBuffer(1,n,PP.cfg.audio.sample_rate),ch=buf.getChannelData(0);
+  var g=pk>0?Math.min(4,0.9/pk):1,buf=ctx.createBuffer(1,n,PP.L[TS.lang].cfg.audio.sample_rate),ch=buf.getChannelData(0);
   for(var j=0;j<n;j++)ch[j]=data[j]*g;
   ppStop();
   var s=ctx.createBufferSource();s.buffer=buf;s.connect(ctx.destination);s.onended=function(){if(PP.src===s)PP.src=null;end();};PP.src=s;s.start();
 }
 function ppSpeak(g){
-  ppEnsure().then(function(){
+  ppEnsure(TS.lang).then(function(){
     if(g!==TS.gen||!TS.on)return;
     return ppAudio(TS.i).then(function(d){
       if(g!==TS.gen||!TS.on)return;
@@ -1233,7 +1277,7 @@ function lsnSpeak(){
   if(TS.i>=TS.q.length){lsnDone();return;}
   var c=TS.q[TS.i],g=TS.gen;
   lsnMark(c.el);
-  if(TS.lang==="tr"&&ls("hd_vc_tr")==="__piper"&&PP.avail!==false){ppSpeak(g);return;}
+  if(ls("hd_vc_"+TS.lang)==="__piper"&&PP.avail!==false){ppSpeak(g);return;}
   var u=new SpeechSynthesisUtterance(c.text);
   u.lang=TS.lang==="de"?"de-DE":"tr-TR";
   var v=lsnPick(TS.lang);if(v)u.voice=v;
@@ -1268,11 +1312,11 @@ function lsnStart(id,ch,n){
   TS.gen++;
   TS.id=id;TS.ch=ch;TS.n=n;TS.lang=pl(id);TS.q=lsnBuild(id);TS.i=0;TS.cur=null;
   TS.on=true;lsnUI();lsnFill();lsnWake(true);
-  if(TS.lang==="tr"&&ls("hd_vc_tr")==="__piper"&&PP.avail!==false){
+  if(ls("hd_vc_"+TS.lang)==="__piper"&&PP.avail!==false){
     ppCtx();
-    if(!PP.sess&&ls("hd_pp_ok")!=="1"&&!confirm(T("ppAsk"))){ls("hd_vc_tr","");lsnFill();}
+    if(!(PP.L[TS.lang]&&PP.L[TS.lang].sess)&&ls("hd_pp_ok_"+TS.lang)!=="1"&&!confirm(T("ppAsk"))){ls("hd_vc_"+TS.lang,"");lsnFill();}
   }
-  lsnMsg(lsnPick(TS.lang)||ls("hd_vc_tr")==="__piper"?"":T("lsnNoVoice"));
+  lsnMsg(lsnPick(TS.lang)||ls("hd_vc_"+TS.lang)==="__piper"?"":T("lsnNoVoice"));
   lsnSpeak();
 }
 function lsnInit(id,ch,n){
