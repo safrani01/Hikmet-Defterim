@@ -2,8 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
-<meta name="theme-color" content="#2b8fd6">
+<meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Not Defteri</title>
@@ -215,7 +214,7 @@ const NC=['var(--n0)','var(--n1)','var(--n2)','var(--n3)','var(--n4)','var(--n5)
 /* ============ Ayarlar ============ */
 const S=Object.assign({theme:'sky',fs:18,layout:'grid',sort:'updated',indent:true,clientId:'',autosync:true,lastSync:0,connected:false,lastFmt:'docx',lastMode:'zip',xfiles:true},JSON.parse(localStorage.getItem('nd_settings')||'{}'));
 const saveS=()=>{try{localStorage.setItem('nd_settings',JSON.stringify(S))}catch(e){}};
-function applyTheme(){document.documentElement.dataset.theme=S.theme;const t=THEMES.find(x=>x[0]===S.theme)||THEMES[0];$('meta[name=theme-color]').content=t[4]?t[3]:t[2]}
+function applyTheme(){document.documentElement.dataset.theme=S.theme;}
 
 /* ============ Veritabanı (IndexedDB — sınırsız uzunlukta metin) ============ */
 let db;
