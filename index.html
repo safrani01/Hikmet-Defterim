@@ -1089,7 +1089,7 @@ function vStats(){
   var read=0,total=0,qz=0,sum=0,cnt=0;
   BOOKS.forEach(function(b){if(b.ro)return;LS(b.id).forEach(function(l,i){total++;var s=status(b.id,i);if(s&&(s.read||s.best!=null))read++;if(s&&s.att){qz+=s.att;sum+=s.best/s.tot;cnt++;}});});
   var h='<div class="stat"><div><b>'+read+'/'+total+'</b><small>'+esc(T("lessonsRead"))+'</small></div><div><b>'+qz+'</b><small>'+esc(T("quizzes"))+'</small></div><div><b>'+(cnt?Math.round(sum/cnt*100)+"%":"–")+'</b><small>'+esc(T("avg"))+'</small></div></div>';
-  h+='<div class="card row"><span>🏅 '+esc(GT("rank")[gRank(gTotal())])+'</span><b style="font-size:22px">'+gTotal()+' '+esc(GT("pts"))+'</b></div>';
+  h+='<div class="card row"><span>'+GRI[gRank(gTotal())]+' '+esc(GT("rank")[gRank(gTotal())])+'</span><b style="font-size:22px">'+gTotal()+' '+esc(GT("pts"))+'</b></div>';
   h+='<div class="card row"><span>🔥 '+esc(T("streak"))+'</span><b style="font-size:22px">'+streak()+'</b></div>';
   BOOKS.forEach(function(b){
     if(b.ro)return;
@@ -1546,7 +1546,7 @@ document.addEventListener("click",function(e){
 });
 /* ---------- Oyun haritası ---------- */
 var GS={
- tr:{mapT:"Hikmet Yolculuğu",mapSub:"Dört kitapta da aynı anda ilerleyebilirsin. Her bölgenin ilk noktası açık.",pts:"puan",rank:["Yolcu","Talip","Talebe","Ehl-i Hikmet","Hakîm"],next:"Sonraki rütbe",maxRank:"En yüksek rütbe",
+ tr:{mapT:"Hikmet Yolculuğu",mapSub:"Dört kitapta da aynı anda ilerleyebilirsin. Her bölgenin ilk noktası açık.",pts:"puan",rank:["Bronz","Gümüş","Altın","Platin","Ametist","Topaz","Zümrüt","Yakut","Safir","Elmas"],next:"Sonraki hedef",maxRank:"En yüksek seviyeye ulaştın",lvl:"Seviye",need2:"puan gerekli",left:"kalan",step:"Her 250 puanda bir seviye atlarsın.",
   r:["Çöl Yolu","Mescit Adası","Peygamberler Vadisi","Saâdet Şehri"],rs:["Siyer · 10 durak","Namaz · 8 durak","Kıssalar · 8 durak","Dört Halife · 8 durak"],loc:"Kaldığın noktaya git",
   lockPrev:"Önce önceki bölgenin tüm noktalarını geç.",lockPts:"Bu bölgeyi açmak için toplam {n} puan gerekir. Eksik: {m}.",lockTip:"İpucu: namaz kutucuklarını işaretle (her biri 5 puan), alıştırma yap veya quizlerde daha yüksek puan al.",
   breakdown:"Puanların",bQuiz:"Quiz",bNamaz:"Namaz",bPrac:"Alıştırma",bDay:"Günlük",
@@ -1555,7 +1555,7 @@ var GS={
   passed:"Tebrikler! Nokta geçildi.",failed:"Bu sefer geçemedin. Yanlış yaptığın soruları alıştırarak noktayı geçebilirsin.",earned:"Kazanılan",unlocked:"Yeni nokta açıldı!",rankUp:"Yeni rütbe",regionUnlocked:"Yeni bölge açıldı!",
   pracT:"Alıştırma",pracSub:"Yanlış yaptığın soruları doğru cevaplayana kadar tekrar edeceğiz.",pracLeft:"Kalan soru",pracDone:"Alıştırma tamamlandı! Nokta geçildi.",pracAgain:"Bu soru sonda yeniden gelecek.",pracNone:"Bu ders için alıştırılacak soru yok.",
   collapse:"Bölgeyi aç/kapat",star:"yıldız",today:"Bugün"},
- de:{mapT:"Reise der Weisheit",mapSub:"Du kannst in allen vier Büchern gleichzeitig vorankommen. Jede Region beginnt freigeschaltet.",pts:"Punkte",rank:["Wanderer","Suchender","Schüler","Weisheitskundiger","Weiser"],next:"Nächster Rang",maxRank:"Höchster Rang",
+ de:{mapT:"Reise der Weisheit",mapSub:"Du kannst in allen vier Büchern gleichzeitig vorankommen. Jede Region beginnt freigeschaltet.",pts:"Punkte",rank:["Bronze","Silber","Gold","Platin","Amethyst","Topas","Smaragd","Rubin","Saphir","Diamant"],next:"Nächstes Ziel",maxRank:"Höchste Stufe erreicht",lvl:"Stufe",need2:"Punkte nötig",left:"fehlen",step:"Alle 250 Punkte steigst du eine Stufe auf.",
   r:["Wüstenpfad","Moscheeinsel","Tal der Propheten","Stadt der Glückseligkeit"],rs:["Siyer · 10 Stationen","Gebet · 8 Stationen","Erzählungen · 8 Stationen","Vier Kalifen · 8 Stationen"],loc:"Zu meiner Station",
   lockPrev:"Bestehe zuerst alle Stationen der vorherigen Region.",lockPts:"Zum Freischalten sind insgesamt {n} Punkte nötig. Es fehlen {m}.",lockTip:"Tipp: Hake Gebetsfelder ab (je 5 Punkte), mache Übungen oder erreiche in Quizzen mehr Punkte.",
   breakdown:"Deine Punkte",bQuiz:"Quiz",bNamaz:"Gebet",bPrac:"Übung",bDay:"Täglich",
@@ -1570,7 +1570,8 @@ var GREG=[{id:"siyer",ic:"🏜️",need:0,bg:"linear-gradient(160deg,rgba(231,19
  {id:"namaz",ic:"🏝️",need:350,bg:"linear-gradient(160deg,rgba(90,170,210,.32),rgba(60,120,190,.16))"},
  {id:"kissalar",ic:"🌄",need:800,bg:"linear-gradient(160deg,rgba(110,180,120,.32),rgba(70,130,100,.16))"},
  {id:"halife",ic:"🕌",need:1200,bg:"linear-gradient(160deg,rgba(240,190,110,.38),rgba(200,140,80,.18))"}];
-var GRANK=[0,150,400,900,1500];
+var GRANK=[0,250,500,750,1000,1250,1500,1750,2000,2250];
+var GRI=["🥉","🥈","🥇","⚪","🟣","🟠","🟢","🔴","🔵","💎"];
 var GSYM='<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>'
 +'<linearGradient id="gW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6dc"/><stop offset="1" stop-color="#ead2a2"/></linearGradient>'
 +'<linearGradient id="gR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ee8548"/><stop offset="1" stop-color="#bd532b"/></linearGradient>'
@@ -1681,9 +1682,9 @@ function gCurrent(){var c=gCurReg(gLastReg());for(var i=0;i<GREG.length&&!c;i++)
 function gFmt(s,o){return s.replace(/\{(\w+)\}/g,function(_,k){return o[k];});}
 function gHeader(){
   var t=gTotal(),r=gRank(t),pa=gParts(),nx=GRANK[r+1];
-  var h='<div class="gh"><div class="grow"><div><div class="gk">'+esc(GT("mapT"))+'</div><div class="gr">🏅 '+esc(GT("rank")[r])+'</div></div><div class="gp"><b>'+t+'</b><span>'+esc(GT("pts"))+'</span></div></div>';
+  var h='<div class="gh"><div class="grow"><div><div class="gk">'+esc(GT("mapT"))+'</div><div class="gr">'+GRI[r]+' '+esc(GT("rank")[r])+' <small style="font-size:13px;opacity:.85;font-weight:600">'+esc(GT("lvl"))+' '+(r+1)+'/'+GRANK.length+'</small></div></div><div class="gp"><b>'+t+'</b><span>'+esc(GT("pts"))+'</span></div></div>';
   h+='<div class="bar" style="margin:8px 0 4px;background:rgba(255,255,255,.28)"><i style="width:'+(nx?Math.round((t-GRANK[r])/(nx-GRANK[r])*100):100)+'%;background:#f6d27a"></i></div>';
-  h+='<div class="gs">'+(nx?esc(GT("next"))+': '+esc(GT("rank")[r+1])+' ('+(nx-t)+' '+esc(GT("pts"))+')':esc(GT("maxRank")))+'</div>';
+  h+='<div class="gs">'+(nx?esc(GT("next"))+': '+GRI[r+1]+' <b>'+esc(GT("rank")[r+1])+'</b> · '+nx+' '+esc(GT("need2"))+' ('+(nx-t)+' '+esc(GT("left"))+')':esc(GT("maxRank")))+'</div><div class="gs" style="opacity:.75">'+esc(GT("step"))+'</div>';
   h+='<button class="gloc" data-loc="1">📍 '+esc(GT("loc"))+'</button><div class="gb"><span>📝 '+pa.q+'</span><span>🕌 '+pa.nv+'</span><span>🔁 '+pa.p+'</span><span>📅 '+pa.d+'</span></div></div>';
   return h;
 }
@@ -1755,7 +1756,7 @@ function gResultHtml(r,extra){
   if(r.d>0)h+='<div class="gev">⭐ '+esc(GT("earned"))+': +'+r.d+' '+esc(GT("pts"))+'</div>';
   if(r.unl)h+='<div class="gev">🔓 '+esc(GT("unlocked"))+'</div>';
   if(r.reg)h+='<div class="gev">🗺️ '+esc(GT("regionUnlocked"))+'</div>';
-  if(r.rankUp>=0)h+='<div class="gev">🏅 '+esc(GT("rankUp"))+': '+esc(GT("rank")[r.rankUp])+'</div>';
+  if(r.rankUp>=0)h+='<div class="gev">'+GRI[r.rankUp]+' '+esc(GT("rankUp"))+': '+esc(GT("rank")[r.rankUp])+'</div>';
   return h;
 }
 function vPrac(id,n){
