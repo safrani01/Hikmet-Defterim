@@ -1546,7 +1546,7 @@ document.addEventListener("click",function(e){
 });
 /* ---------- Oyun haritası ---------- */
 var GS={
- tr:{mapT:"Hikmet Yolculuğu",mapSub:"Dört kitapta da aynı anda ilerleyebilirsin. Her bölgenin ilk noktası açık.",pts:"puan",rank:["Bronz","Gümüş","Altın","Platin","Ametist","Topaz","Zümrüt","Yakut","Safir","Elmas"],next:"Sonraki hedef",maxRank:"En yüksek seviyeye ulaştın",lvl:"Seviye",need2:"puan gerekli",left:"kalan",step:"Her 250 puanda bir seviye atlarsın.",
+ tr:{mapT:"Hikmet Yolculuğu",mapSub:"Dört kitapta da aynı anda ilerleyebilirsin. Her bölgenin ilk noktası açık.",pts:"puan",rank:["Bronz","Gümüş","Altın","Platin","Ametist","Topaz","Zümrüt","Yakut","Safir","Elmas"],next:"Sonraki hedef",maxRank:"En yüksek seviyeye ulaştın",lvl:"Seviye",need2:"puan gerekli",left:"kalan",step:"Her 500 puanda bir seviye atlarsın.",
   r:["Çöl Yolu","Mescit Adası","Peygamberler Vadisi","Saâdet Şehri"],rs:["Siyer · 10 durak","Namaz · 8 durak","Kıssalar · 8 durak","Dört Halife · 8 durak"],loc:"Kaldığın noktaya git",
   lockPrev:"Önce önceki bölgenin tüm noktalarını geç.",lockPts:"Bu bölgeyi açmak için toplam {n} puan gerekir. Eksik: {m}.",lockTip:"İpucu: namaz kutucuklarını işaretle (her biri 5 puan), alıştırma yap veya quizlerde daha yüksek puan al.",
   breakdown:"Puanların",bQuiz:"Quiz",bNamaz:"Namaz",bPrac:"Alıştırma",bDay:"Günlük",
@@ -1555,7 +1555,7 @@ var GS={
   passed:"Tebrikler! Nokta geçildi.",failed:"Bu sefer geçemedin. Yanlış yaptığın soruları alıştırarak noktayı geçebilirsin.",earned:"Kazanılan",unlocked:"Yeni nokta açıldı!",rankUp:"Yeni rütbe",regionUnlocked:"Yeni bölge açıldı!",
   pracT:"Alıştırma",pracSub:"Yanlış yaptığın soruları doğru cevaplayana kadar tekrar edeceğiz.",pracLeft:"Kalan soru",pracDone:"Alıştırma tamamlandı! Nokta geçildi.",pracAgain:"Bu soru sonda yeniden gelecek.",pracNone:"Bu ders için alıştırılacak soru yok.",
   collapse:"Bölgeyi aç/kapat",star:"yıldız",today:"Bugün"},
- de:{mapT:"Reise der Weisheit",mapSub:"Du kannst in allen vier Büchern gleichzeitig vorankommen. Jede Region beginnt freigeschaltet.",pts:"Punkte",rank:["Bronze","Silber","Gold","Platin","Amethyst","Topas","Smaragd","Rubin","Saphir","Diamant"],next:"Nächstes Ziel",maxRank:"Höchste Stufe erreicht",lvl:"Stufe",need2:"Punkte nötig",left:"fehlen",step:"Alle 250 Punkte steigst du eine Stufe auf.",
+ de:{mapT:"Reise der Weisheit",mapSub:"Du kannst in allen vier Büchern gleichzeitig vorankommen. Jede Region beginnt freigeschaltet.",pts:"Punkte",rank:["Bronze","Silber","Gold","Platin","Amethyst","Topas","Smaragd","Rubin","Saphir","Diamant"],next:"Nächstes Ziel",maxRank:"Höchste Stufe erreicht",lvl:"Stufe",need2:"Punkte nötig",left:"fehlen",step:"Alle 500 Punkte steigst du eine Stufe auf.",
   r:["Wüstenpfad","Moscheeinsel","Tal der Propheten","Stadt der Glückseligkeit"],rs:["Siyer · 10 Stationen","Gebet · 8 Stationen","Erzählungen · 8 Stationen","Vier Kalifen · 8 Stationen"],loc:"Zu meiner Station",
   lockPrev:"Bestehe zuerst alle Stationen der vorherigen Region.",lockPts:"Zum Freischalten sind insgesamt {n} Punkte nötig. Es fehlen {m}.",lockTip:"Tipp: Hake Gebetsfelder ab (je 5 Punkte), mache Übungen oder erreiche in Quizzen mehr Punkte.",
   breakdown:"Deine Punkte",bQuiz:"Quiz",bNamaz:"Gebet",bPrac:"Übung",bDay:"Täglich",
@@ -1570,7 +1570,7 @@ var GREG=[{id:"siyer",ic:"🏜️",need:0,bg:"linear-gradient(160deg,rgba(231,19
  {id:"namaz",ic:"🏝️",need:350,bg:"linear-gradient(160deg,rgba(90,170,210,.32),rgba(60,120,190,.16))"},
  {id:"kissalar",ic:"🌄",need:800,bg:"linear-gradient(160deg,rgba(110,180,120,.32),rgba(70,130,100,.16))"},
  {id:"halife",ic:"🕌",need:1200,bg:"linear-gradient(160deg,rgba(240,190,110,.38),rgba(200,140,80,.18))"}];
-var GRANK=[0,250,500,750,1000,1250,1500,1750,2000,2250];
+var GRANK=[0,500,1000,1500,2000,2500,3000,3500,4000,4500];
 var GRI=["🥉","🥈","🥇","⚪","🟣","🟠","🟢","🔴","🔵","💎"];
 var GSYM='<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>'
 +'<linearGradient id="gW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6dc"/><stop offset="1" stop-color="#ead2a2"/></linearGradient>'
